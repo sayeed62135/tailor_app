@@ -1,0 +1,1488 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>স্মার্ট টেইলার্স - ব্যবসাকে করুন স্মার্ট ও ডিজিটাল</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    :root {
+      --gold: #D4A574;
+      --gold-light: #E8C9A8;
+      --gold-dark: #B8875A;
+      --green: #2D5F4F;
+      --green-light: #3A7D66;
+      --green-dark: #1F4639;
+      --orange: #E8704A;
+      --orange-light: #F09070;
+      --bg: #FAFAF8;
+      --text: #1A1A1A;
+      --text-muted: #6B7280;
+      --white: #ffffff;
+      --dark: #0A0A0A;
+      --radius: 1rem;
+      --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
+      --shadow-md: 0 8px 30px rgba(0,0,0,0.08);
+      --shadow-lg: 0 20px 60px rgba(0,0,0,0.12);
+      --shadow-xl: 0 30px 80px rgba(0,0,0,0.18);
+      --shadow-glow-gold: 0 0 40px rgba(212,165,116,0.3);
+    }
+
+    body {
+      font-family: 'Hind Siliguri', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      line-height: 1.7;
+    }
+
+    ::selection {
+      background: var(--gold);
+      color: var(--white);
+    }
+
+    /* ─── SCROLLBAR ─── */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 10px; }
+
+    /* ─── NAVBAR ─── */
+    .navbar-custom {
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 1px solid rgba(212,165,116,0.15);
+      padding: 0.8rem 0;
+      transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
+      z-index: 1000;
+    }
+    .navbar-custom.scrolled {
+      padding: 0.5rem 0;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.08);
+    }
+    .navbar-brand-custom {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: var(--text) !important;
+    }
+    .brand-icon {
+      width: 42px;
+      height: 42px;
+      background: linear-gradient(135deg, var(--gold), var(--orange));
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.2rem;
+      box-shadow: 0 4px 15px rgba(212,165,116,0.4);
+    }
+    .nav-cta {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    /* ─── BUTTONS ─── */
+    .btn-gold {
+      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+      color: white;
+      border: none;
+      padding: 0.7rem 1.8rem;
+      border-radius: 50px;
+      font-family: 'Hind Siliguri', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: all 0.3s cubic-bezier(0.16,1,0.3,1);
+      box-shadow: 0 4px 15px rgba(212,165,116,0.4);
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-gold::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%; width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s;
+    }
+    .btn-gold:hover::before { left: 100%; }
+    .btn-gold:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(212,165,116,0.5);
+      color: white;
+    }
+    .btn-green-custom {
+      background: linear-gradient(135deg, var(--green), var(--green-dark));
+      color: white;
+      border: none;
+      padding: 0.7rem 1.8rem;
+      border-radius: 50px;
+      font-family: 'Hind Siliguri', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: all 0.3s cubic-bezier(0.16,1,0.3,1);
+      box-shadow: 0 4px 15px rgba(45,95,79,0.3);
+    }
+    .btn-green-custom:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(45,95,79,0.4);
+      color: white;
+    }
+    .btn-outline-gold-custom {
+      background: transparent;
+      color: var(--gold);
+      border: 2px solid var(--gold);
+      padding: 0.6rem 1.6rem;
+      border-radius: 50px;
+      font-family: 'Hind Siliguri', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: all 0.3s cubic-bezier(0.16,1,0.3,1);
+    }
+    .btn-outline-gold-custom:hover {
+      background: var(--gold);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(212,165,116,0.4);
+    }
+    .btn-outline-white-custom {
+      background: transparent;
+      color: white;
+      border: 2px solid rgba(255,255,255,0.5);
+      padding: 0.7rem 1.8rem;
+      border-radius: 50px;
+      font-family: 'Hind Siliguri', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: all 0.3s cubic-bezier(0.16,1,0.3,1);
+    }
+    .btn-outline-white-custom:hover {
+      background: rgba(255,255,255,0.15);
+      border-color: white;
+      color: white;
+      transform: translateY(-2px);
+    }
+    .btn-white-custom {
+      background: white;
+      color: var(--gold-dark);
+      border: none;
+      padding: 0.7rem 1.8rem;
+      border-radius: 50px;
+      font-family: 'Hind Siliguri', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      transition: all 0.3s cubic-bezier(0.16,1,0.3,1);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    }
+    .btn-white-custom:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+      color: var(--gold-dark);
+    }
+    .btn-lg-custom { padding: 0.95rem 2.4rem; font-size: 1.1rem; }
+    .btn-sm-custom { padding: 0.45rem 1.2rem; font-size: 0.9rem; }
+
+    /* ─── HERO ─── */
+    .hero-section {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: linear-gradient(160deg, #FAFAF8 0%, #F5EDE4 40%, #FAFAF8 100%);
+    }
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, rgba(212,165,116,0.12) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .hero-section::after {
+      content: '';
+      position: absolute;
+      bottom: -30%;
+      left: -10%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(45,95,79,0.08) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(212,165,116,0.12);
+      border: 1px solid rgba(212,165,116,0.3);
+      color: var(--gold-dark);
+      padding: 0.4rem 1.2rem;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+    .hero-title {
+      font-size: clamp(2.4rem, 5.5vw, 4rem);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
+      color: var(--text);
+    }
+    .hero-title .text-gradient {
+      background: linear-gradient(135deg, var(--gold), var(--orange));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-desc {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      line-height: 1.85;
+      margin-bottom: 2.5rem;
+      max-width: 520px;
+    }
+    .hero-stats {
+      display: flex;
+      gap: 2.5rem;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(0,0,0,0.08);
+    }
+    .hero-stat-number {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--gold-dark);
+      display: block;
+    }
+    .hero-stat-label {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    .hero-img-container {
+      position: relative;
+    }
+    .hero-img-main {
+      border-radius: 1.5rem;
+      box-shadow: var(--shadow-xl);
+      border: 1px solid rgba(212,165,116,0.2);
+      overflow: hidden;
+      position: relative;
+      z-index: 2;
+    }
+    .hero-img-main img {
+      width: 100%;
+      display: block;
+    }
+    .hero-float-badge {
+      position: absolute;
+      z-index: 3;
+      background: white;
+      border-radius: 1rem;
+      padding: 1rem 1.4rem;
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      animation: floatBadge 3s ease-in-out infinite;
+    }
+    .hero-float-badge.badge-bottom {
+      bottom: -1.5rem;
+      right: -1rem;
+    }
+    .hero-float-badge.badge-top {
+      top: 2rem;
+      left: -2rem;
+      animation-delay: 1.5s;
+    }
+    .badge-icon-circle {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      color: white;
+      flex-shrink: 0;
+    }
+    .badge-icon-circle.gold-bg { background: linear-gradient(135deg, var(--gold), var(--orange)); }
+    .badge-icon-circle.green-bg { background: linear-gradient(135deg, var(--green), var(--green-light)); }
+    .badge-text strong { display: block; font-size: 0.95rem; color: var(--text); }
+    .badge-text span { font-size: 0.8rem; color: var(--text-muted); }
+    .hero-decor-circle {
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 2px dashed rgba(212,165,116,0.3);
+      z-index: 1;
+      animation: spinSlow 20s linear infinite;
+    }
+    .hero-decor-circle.c1 { top: -30px; right: -30px; }
+    .hero-decor-circle.c2 { bottom: 40px; left: -50px; width: 80px; height: 80px; animation-direction: reverse; }
+    @keyframes floatBadge {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    @keyframes spinSlow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* ─── SECTION COMMON ─── */
+    section { padding: 6rem 0; }
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--gold-dark);
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 1rem;
+    }
+    .section-label i { font-size: 0.7rem; }
+    .section-heading {
+      font-size: clamp(1.9rem, 4vw, 2.8rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    .section-sub {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto 3.5rem;
+      line-height: 1.75;
+    }
+    .section-white { background: var(--white); }
+    .section-bg { background: var(--bg); }
+
+    /* ─── PROBLEM CARDS ─── */
+    .problem-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      border: 1px solid #eee;
+      padding: 2rem;
+      height: 100%;
+      transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
+      position: relative;
+      overflow: hidden;
+    }
+    .problem-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 4px; height: 100%;
+      background: linear-gradient(180deg, var(--orange), var(--gold));
+      border-radius: 4px 0 0 4px;
+      transform: scaleY(0);
+      transform-origin: top;
+      transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+    }
+    .problem-card:hover::before { transform: scaleY(1); }
+    .problem-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      border-color: transparent;
+    }
+    .problem-icon-wrap {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      background: rgba(232,112,74,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      margin-bottom: 1.2rem;
+      color: var(--orange);
+    }
+    .problem-title { font-size: 1.1rem; font-weight: 700; color: var(--text); margin-bottom: 0.6rem; }
+    .problem-desc { font-size: 0.93rem; color: var(--text-muted); margin-bottom: 1.2rem; line-height: 1.7; }
+    .solution-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(45,95,79,0.08);
+      border: 1px solid rgba(45,95,79,0.15);
+      color: var(--green);
+      padding: 0.4rem 1rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+    .solution-badge i { color: var(--green-light); }
+
+    /* ─── FEATURES ─── */
+    .feature-block {
+      padding: 4rem 0;
+    }
+    .feature-block + .feature-block {
+      border-top: 1px solid rgba(0,0,0,0.06);
+    }
+    .feature-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: linear-gradient(135deg, rgba(212,165,116,0.15), rgba(212,165,116,0.05));
+      color: var(--gold-dark);
+      padding: 0.35rem 1rem;
+      border-radius: 50px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+    .feature-heading {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 1rem;
+      line-height: 1.3;
+    }
+    .feature-heading .highlight { color: var(--gold-dark); }
+    .feature-desc {
+      font-size: 1rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      line-height: 1.8;
+    }
+    .feature-check-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .feature-check-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.65rem;
+      margin-bottom: 0.85rem;
+      font-size: 0.95rem;
+      color: var(--text);
+    }
+    .feature-check-list li i {
+      color: var(--green-light);
+      font-size: 1.1rem;
+      margin-top: 0.2rem;
+      flex-shrink: 0;
+    }
+    .feature-img-wrapper {
+      position: relative;
+      border-radius: 1.25rem;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      border: 1px solid rgba(212,165,116,0.15);
+    }
+    .feature-img-wrapper img {
+      width: 100%;
+      display: block;
+    }
+    .feature-img-wrapper::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 1.25rem;
+      background: linear-gradient(135deg, rgba(212,165,116,0.05), transparent);
+      pointer-events: none;
+    }
+    .feature-number {
+      position: absolute;
+      top: -15px;
+      right: 20px;
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, var(--gold), var(--orange));
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 700;
+      font-size: 1.2rem;
+      box-shadow: 0 8px 20px rgba(212,165,116,0.4);
+      z-index: 5;
+    }
+
+    /* ─── SHOWCASE DARK SECTION ─── */
+    .showcase-section {
+      background: var(--dark);
+      position: relative;
+      overflow: hidden;
+    }
+    .showcase-section::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 1000px;
+      height: 1000px;
+      background: radial-gradient(circle, rgba(212,165,116,0.06) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .showcase-section .section-heading { color: white; }
+    .showcase-section .section-sub { color: rgba(255,255,255,0.45); }
+
+    .tab-nav-custom {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+    }
+    .tab-btn-custom {
+      padding: 0.55rem 1.4rem;
+      border-radius: 50px;
+      border: 1.5px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.04);
+      color: rgba(255,255,255,0.55);
+      font-family: 'Hind Siliguri', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.16,1,0.3,1);
+      backdrop-filter: blur(10px);
+    }
+    .tab-btn-custom:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: rgba(212,165,116,0.08);
+    }
+    .tab-btn-custom.active {
+      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+      border-color: var(--gold);
+      color: #111;
+      box-shadow: 0 4px 20px rgba(212,165,116,0.4);
+    }
+    .tab-panel-custom { display: none; }
+    .tab-panel-custom.active {
+      display: block;
+      animation: fadeTabIn 0.5s ease;
+    }
+    @keyframes fadeTabIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .screenshot-frame {
+      position: relative;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    .screenshot-frame img {
+      width: 100%;
+      border-radius: 1rem;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+      border: 1px solid rgba(255,255,255,0.08);
+      display: block;
+    }
+    .screenshot-duo {
+      display: grid;
+      grid-template-columns: 1fr 1.65fr;
+      gap: 1.5rem;
+      max-width: 960px;
+      margin: 0 auto;
+      align-items: start;
+    }
+    .screenshot-duo img {
+      width: 100%;
+      border-radius: 1rem;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+      border: 1px solid rgba(255,255,255,0.08);
+      display: block;
+    }
+    .screenshot-label {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+      color: #111;
+      font-weight: 700;
+      font-size: 0.82rem;
+      padding: 0.3rem 1rem;
+      border-radius: 50px;
+      margin-bottom: 0.9rem;
+    }
+
+    /* ─── WHY GRID ─── */
+    .why-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      border: 1px solid #eee;
+      padding: 2.2rem 1.8rem;
+      text-align: center;
+      height: 100%;
+      transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
+      position: relative;
+      overflow: hidden;
+    }
+    .why-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold), var(--green));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+    }
+    .why-card:hover::after { transform: scaleX(1); }
+    .why-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+      border-color: transparent;
+    }
+    .why-icon-wrap {
+      width: 64px;
+      height: 64px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, rgba(212,165,116,0.12), rgba(212,165,116,0.04));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.2rem;
+      font-size: 1.6rem;
+      color: var(--gold-dark);
+      transition: all 0.3s ease;
+    }
+    .why-card:hover .why-icon-wrap {
+      background: linear-gradient(135deg, var(--gold), var(--orange));
+      color: white;
+      transform: scale(1.08);
+      box-shadow: 0 8px 25px rgba(212,165,116,0.4);
+    }
+    .why-title { font-size: 1.05rem; font-weight: 700; color: var(--text); margin-bottom: 0.5rem; }
+    .why-desc { color: var(--text-muted); font-size: 0.9rem; line-height: 1.65; }
+
+    /* ─── PRICING ─── */
+    .pricing-card-main {
+      background: var(--white);
+      border-radius: 1.5rem;
+      overflow: hidden;
+      border: 2px solid rgba(212,165,116,0.2);
+      box-shadow: var(--shadow-lg);
+      transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
+    }
+    .pricing-card-main:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-xl);
+    }
+    .pricing-top {
+      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+      padding: 2.5rem 2.5rem 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .pricing-top::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -30%;
+      width: 200px;
+      height: 200px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 50%;
+    }
+    .pricing-top::after {
+      content: '';
+      position: absolute;
+      bottom: -40%;
+      left: -20%;
+      width: 150px;
+      height: 150px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 50%;
+    }
+    .pricing-name { font-size: 2rem; font-weight: 700; color: white; margin-bottom: 0.5rem; position: relative; z-index: 2; }
+    .pricing-tagline { color: rgba(255,255,255,0.8); font-size: 0.95rem; position: relative; z-index: 2; }
+    .pricing-body { padding: 2.5rem; }
+    .pricing-row-custom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+    .pricing-row-custom:last-of-type { border-bottom: none; }
+    .pricing-label { font-size: 1.05rem; color: var(--text); }
+    .price-orange { font-size: 1.6rem; font-weight: 700; color: var(--orange); }
+    .price-green { font-size: 1.6rem; font-weight: 700; color: var(--green); }
+    .offer-box-custom {
+      background: linear-gradient(135deg, rgba(232,112,74,0.08), rgba(232,112,74,0.03));
+      border: 2px solid rgba(232,112,74,0.25);
+      border-radius: var(--radius);
+      padding: 1.4rem;
+      margin: 1.5rem 0 2rem;
+      text-align: center;
+    }
+    .offer-title-custom { font-size: 1rem; font-weight: 700; color: var(--orange); }
+    .offer-sub-custom { font-size: 0.85rem; color: var(--text-muted); margin-top: 0.3rem; }
+    .pricing-check-list { list-style: none; padding: 0; margin-bottom: 2rem; }
+    .pricing-check-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      margin-bottom: 0.85rem;
+      font-size: 0.97rem;
+      color: var(--text);
+    }
+    .pricing-check-list li i { color: var(--green-light); font-size: 1.1rem; margin-top: 0.15rem; }
+
+    /* ─── CTA ─── */
+    .cta-section {
+      background: linear-gradient(135deg, var(--green-dark) 0%, var(--green) 50%, var(--gold-dark) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(212,165,116,0.15) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .cta-section::after {
+      content: '';
+      position: absolute;
+      bottom: -30%;
+      left: -10%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .cta-title { font-size: clamp(1.9rem, 4vw, 2.8rem); font-weight: 700; color: white; margin-bottom: 1rem; line-height: 1.2; }
+    .cta-sub { font-size: 1.15rem; color: rgba(255,255,255,0.8); margin-bottom: 2.5rem; }
+    .cta-trust {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 2.5rem;
+      flex-wrap: wrap;
+    }
+    .cta-trust-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: rgba(255,255,255,0.75);
+      font-size: 0.9rem;
+    }
+    .cta-trust-item i { color: var(--gold-light); font-size: 1rem; }
+
+    /* ─── FOOTER ─── */
+    .footer-section {
+      background: #0D0D0D;
+      color: white;
+      padding: 4rem 0 2rem;
+    }
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 1rem;
+      text-decoration: none;
+    }
+    .footer-desc { color: rgba(255,255,255,0.5); font-size: 0.92rem; line-height: 1.7; }
+    .footer-heading {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 1.2rem;
+    }
+    .footer-links { list-style: none; padding: 0; margin: 0; }
+    .footer-links li { margin-bottom: 0.7rem; }
+    .footer-links a {
+      color: rgba(255,255,255,0.55);
+      text-decoration: none;
+      font-size: 0.92rem;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .footer-links a:hover { color: var(--gold); transform: translateX(4px); }
+    .footer-links a i { font-size: 0.8rem; opacity: 0.7; }
+    .footer-social {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+    }
+    .footer-social a {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      font-size: 1.1rem;
+      transition: all 0.3s;
+    }
+    .footer-social a:hover {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(212,165,116,0.4);
+    }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 2rem;
+      margin-top: 3rem;
+      text-align: center;
+      color: rgba(255,255,255,0.35);
+      font-size: 0.88rem;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 991px) {
+      .hero-stats { gap: 1.5rem; }
+      .hero-float-badge.badge-top { display: none; }
+      .screenshot-duo { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 767px) {
+      section { padding: 4rem 0; }
+      .hero-section { min-height: auto; padding: 7rem 0 4rem; }
+      .hero-stats { flex-wrap: wrap; gap: 1.5rem; }
+      .feature-block { padding: 2.5rem 0; }
+      .hero-float-badge.badge-bottom { right: 0.5rem; bottom: -1rem; }
+      .pricing-body { padding: 2rem 1.5rem; }
+      .pricing-top { padding: 2rem 1.5rem 1.5rem; }
+    }
+    @media (max-width: 575px) {
+      .hero-btns-row { flex-direction: column; }
+      .hero-btns-row .btn { width: 100%; }
+      .cta-btns-row { flex-direction: column; align-items: center; }
+      .cta-btns-row .btn { width: 100%; max-width: 300px; }
+    }
+
+    /* ─── BACK TO TOP ─── */
+    .back-to-top {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+      color: white;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      box-shadow: 0 6px 20px rgba(212,165,116,0.4);
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(10px);
+      transition: all 0.3s cubic-bezier(0.16,1,0.3,1);
+      z-index: 999;
+    }
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    .back-to-top:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(212,165,116,0.5);
+    }
+
+    /* ─── LOADING ANIMATION ─── */
+    .page-loader {
+      position: fixed;
+      inset: 0;
+      background: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.5s, visibility 0.5s;
+    }
+    .page-loader.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+    .loader-spinner {
+      width: 48px;
+      height: 48px;
+      border: 3px solid rgba(212,165,116,0.2);
+      border-top-color: var(--gold);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ─── COUNTER ANIMATION ─── */
+    .count-up { display: inline-block; }
+  </style>
+</head>
+<body>
+
+<!-- PAGE LOADER -->
+<div class="page-loader" id="pageLoader">
+  <div class="loader-spinner"></div>
+</div>
+
+<!-- BACK TO TOP -->
+<button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <i class="bi bi-arrow-up"></i>
+</button>
+
+<!-- ═══════════════════════════════════════
+     NAVBAR
+════════════════════════════════════════ -->
+<nav class="navbar navbar-expand-lg navbar-custom fixed-top" id="mainNav">
+  <div class="container">
+    <a href="#" class="navbar-brand-custom">
+      <div class="brand-icon"><i class="bi bi-scissors"></i></div>
+      <span>স্মার্ট টেইলার্স</span>
+    </a>
+    <div class="nav-cta d-none d-md-flex">
+      <button class="btn btn-outline-gold-custom btn-sm-custom" id="demoBtn">
+        <i class="bi bi-play-circle me-1"></i> ডেমো
+      </button>
+      <button class="btn btn-green-custom btn-sm-custom" onclick="openWhatsApp()">
+        <i class="bi bi-whatsapp me-1"></i> যোগাযোগ করুন
+      </button>
+    </div>
+    <button class="btn btn-green-custom d-md-none" style="padding:0.5rem 1rem;font-size:0.9rem" onclick="openWhatsApp()">
+      <i class="bi bi-whatsapp"></i>
+    </button>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════
+     HERO
+════════════════════════════════════════ -->
+<section class="hero-section">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6" data-aos="fade-right" data-aos-duration="800">
+        <div class="hero-badge">
+          <i class="bi bi-stars"></i>
+          বাংলাদেশের প্রথম ডিজিটাল টেইলার্স সিস্টেম
+        </div>
+        <h1 class="hero-title">
+          আপনার টেইলার্স ব্যবসাকে করুন<br>
+          <span class="text-gradient">স্মার্ট ও ডিজিটাল!</span>
+        </h1>
+        <p class="hero-desc">
+          খাতা-কলমের ঝামেলা ছেড়ে এখন সব মাপ, অর্ডার ও হিসাব রাখুন হাতের মুঠোয়। বাংলাদেশের টেইলার্সদের জন্য তৈরি ১০০% বাংলা সফটওয়্যার।
+        </p>
+        <div class="d-flex gap-3 flex-wrap hero-btns-row">
+          <button class="btn btn-gold btn-lg-custom" id="heroDemoBtn">
+            <i class="bi bi-rocket-takeoff me-2"></i>৭ দিনের ফ্রি ডেমো নিন
+          </button>
+          <button class="btn btn-outline-gold-custom btn-lg-custom" onclick="openWhatsApp()">
+            <i class="bi bi-chat-dots me-2"></i>সরাসরি কথা বলুন
+          </button>
+        </div>
+        <div class="hero-stats">
+          <div>
+            <span class="hero-stat-number"><span class="count-up" data-target="500">0</span>+</span>
+            <span class="hero-stat-label">সন্তুষ্ট গ্রাহক</span>
+          </div>
+          <div>
+            <span class="hero-stat-number"><span class="count-up" data-target="50">0</span>+</span>
+            <span class="hero-stat-label">শহরে সক্রিয়</span>
+          </div>
+          <div>
+            <span class="hero-stat-number"><span class="count-up" data-target="10000">0</span>+</span>
+            <span class="hero-stat-label">অর্ডার পরিচালিত</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6" data-aos="fade-left" data-aos-duration="800" data-aos-delay="200">
+        <div class="hero-img-container">
+          <div class="hero-decor-circle c1"></div>
+          <div class="hero-decor-circle c2"></div>
+          <div class="hero-img-main">
+            <img src="img/WhatsApp Image 2026-04-03 at 5.03.33 AM.jpeg" alt="তোমার টেইলার্সের ছবি">
+          </div>
+          <div class="hero-float-badge badge-bottom">
+            <div class="badge-icon-circle gold-bg"><i class="bi bi-patch-check-fill"></i></div>
+            <div class="badge-text">
+              <strong>৭ দিন ফ্রি</strong>
+              <span>কোনো কার্ড লাগবে না</span>
+            </div>
+          </div>
+          <div class="hero-float-badge badge-top">
+            <div class="badge-icon-circle green-bg"><i class="bi bi-shield-check"></i></div>
+            <div class="badge-text">
+              <strong>নিরাপদ ডেটা</strong>
+              <span>এনক্রিপ্টেড সার্ভার</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     PROBLEMS
+════════════════════════════════════════ -->
+<section class="section-white">
+  <div class="container">
+    <div class="text-center" data-aos="fade-up">
+      <div class="section-label"><i class="bi bi-circle-fill"></i> সমস্যা ও সমাধান</div>
+      <h2 class="section-heading">কেন আপনি ডিজিটাল সিস্টেমে আসবেন?</h2>
+      <p class="section-sub">খাতা-কলমের পুরনো পদ্ধতির চেয়ে স্মার্ট সিস্টেম কতটা ভালো — দেখুন নিজে</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-6" data-aos="fade-up" data-aos-delay="0">
+        <div class="problem-card">
+          <div class="problem-icon-wrap"><i class="bi bi-rulers"></i></div>
+          <h3 class="problem-title">মাপ হারিয়ে যাওয়া</h3>
+          <p class="problem-desc">খাতায় লেখা মাপ হারিয়ে গেলে কাস্টমারকে নতুন করে মাপ নিতে হয়। সময় নষ্ট হয়, কাস্টমার বিরক্ত হয়।</p>
+          <div class="solution-badge"><i class="bi bi-check-circle-fill"></i> কাস্টমারের মাপ চিরকালের জন্য সংরক্ষিত</div>
+        </div>
+      </div>
+      <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+        <div class="problem-card">
+          <div class="problem-icon-wrap"><i class="bi bi-calculator"></i></div>
+          <h3 class="problem-title">বকেয়া হিসাব মেলাতে কষ্ট</h3>
+          <p class="problem-desc">খাতায় হাতে লেখা হিসাব ভুল হয়, পাতা হারিয়ে যায়, কাস্টমারের সাথে ঝামেলা হয়।</p>
+          <div class="solution-badge"><i class="bi bi-check-circle-fill"></i> অটোমেটিক বিলিং ও বকেয়ার তালিকা</div>
+        </div>
+      </div>
+      <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
+        <div class="problem-card">
+          <div class="problem-icon-wrap"><i class="bi bi-calendar-x"></i></div>
+          <h3 class="problem-title">ডেলিভারি ডেট মিস হওয়া</h3>
+          <p class="problem-desc">অনেক সময় কাপড় প্রস্তুত হয়েছে কিন্তু ডেলিভারি ডেট ভুলে যাওয়া হয়।</p>
+          <div class="solution-badge"><i class="bi bi-check-circle-fill"></i> অটোমেটিক হোয়াটসঅ্যাপ রিমাইন্ডার</div>
+        </div>
+      </div>
+      <div class="col-md-6" data-aos="fade-up" data-aos-delay="300">
+        <div class="problem-card">
+          <div class="problem-icon-wrap"><i class="bi bi-person-exclamation"></i></div>
+          <h3 class="problem-title">কাস্টমার ডেটা ম্যানেজমেন্ট</h3>
+          <p class="problem-desc">নতুন কাস্টমার আসলে তাদের তথ্য খাতায় লিখতে হয়। পরে সেই তথ্য খুঁজে পাওয়া কঠিন।</p>
+          <div class="solution-badge"><i class="bi bi-check-circle-fill"></i> ডিজিটাল প্রোফাইল ও সহজ সার্চ</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     FEATURES
+════════════════════════════════════════ -->
+<section class="section-bg">
+  <div class="container">
+    <div class="text-center" data-aos="fade-up">
+      <div class="section-label"><i class="bi bi-circle-fill"></i> প্রধান ফিচারসমূহ</div>
+      <h2 class="section-heading">যা আপনি পাবেন</h2>
+      <p class="section-sub">প্রতিটি ফিচার টেইলার্সদের প্রকৃত প্রয়োজন থেকে ডিজাইন করা</p>
+    </div>
+
+    <!-- Feature 1 -->
+    <div class="feature-block">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6" data-aos="fade-right" data-aos-duration="700">
+          <div class="feature-img-wrapper">
+            <div class="feature-number">১</div>
+            <img src="img/Screenshot 2026-04-05 161048.png" alt="ড্যাশবোর্ড">
+          </div>
+        </div>
+        <div class="col-lg-6" data-aos="fade-left" data-aos-duration="700" data-aos-delay="150">
+          <div class="feature-tag"><i class="bi bi-grid-1x2-fill"></i> ফিচার ০১</div>
+          <h3 class="feature-heading">স্মার্ট <span class="highlight">ড্যাশবোর্ড</span> ও অর্ডার ম্যানেজমেন্ট</h3>
+          <p class="feature-desc">লগইন করলেই দেখুন — মোট বকেয়া, চলমান অর্ডার, আজকের ডেলিভারি এবং ওভারডিউ অ্যালার্ট। মাত্র ২ মিনিটে নতুন অর্ডার তৈরি করুন।</p>
+          <ul class="feature-check-list">
+            <li><i class="bi bi-check-circle-fill"></i> এক নজরে সব অর্ডারের অবস্থা দেখুন</li>
+            <li><i class="bi bi-check-circle-fill"></i> ওভারডিউ ডেলিভারি অ্যালার্ট তৎক্ষণাৎ পাবেন</li>
+            <li><i class="bi bi-check-circle-fill"></i> দ্রুত নতুন অর্ডার, বিল ও কাস্টমার তৈরি করুন</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Feature 2 -->
+    <div class="feature-block">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6 order-lg-2" data-aos="fade-left" data-aos-duration="700">
+          <div class="feature-img-wrapper">
+            <div class="feature-number">২</div>
+            <img src="img/Screenshot 2026-04-05 161109.png" alt="অর্ডার তালিকা">
+          </div>
+        </div>
+        <div class="col-lg-6 order-lg-1" data-aos="fade-right" data-aos-duration="700" data-aos-delay="150">
+          <div class="feature-tag"><i class="bi bi-list-check"></i> ফিচার ০২</div>
+          <h3 class="feature-heading">অর্ডার তালিকা ও <span class="highlight">স্ট্যাটাস ট্র্যাকিং</span></h3>
+          <p class="feature-desc">সব অর্ডার এক জায়গায়। ওভারডিউ লাল রঙে, পরিশোধিত সবুজে। নাম বা অর্ডার নম্বর দিয়ে যেকোনো অর্ডার মুহূর্তে খুঁজুন।</p>
+          <ul class="feature-check-list">
+            <li><i class="bi bi-check-circle-fill"></i> নাম বা অর্ডার নম্বর দিয়ে তাৎক্ষণিক সার্চ</li>
+            <li><i class="bi bi-check-circle-fill"></i> বকেয়া পরিমাণ ও পেমেন্ট স্ট্যাটাস স্পষ্টভাবে দেখায়</li>
+            <li><i class="bi bi-check-circle-fill"></i> সরাসরি পেমেন্ট ও বিল বাটনে ক্লিক করুন</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Feature 3 -->
+    <div class="feature-block">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6" data-aos="fade-right" data-aos-duration="700">
+          <div class="feature-img-wrapper">
+            <div class="feature-number">৩</div>
+            <img src="img/Screenshot 2026-04-05 161137.png" alt="কাস্টমার প্রোফাইল">
+          </div>
+        </div>
+        <div class="col-lg-6" data-aos="fade-left" data-aos-duration="700" data-aos-delay="150">
+          <div class="feature-tag"><i class="bi bi-person-lines-fill"></i> ফিচার ০৩</div>
+          <h3 class="feature-heading">কাস্টমার প্রোফাইল ও <span class="highlight">মাপ সংরক্ষণ</span></h3>
+          <p class="feature-desc">প্রতিটি কাস্টমারের পাঞ্জাবি, পায়জামা, জুতার মাপ ডিজিটালি সংরক্ষিত। পুরাতন কাস্টমার আসলে সাথে সাথে মাপ পাবেন — কোনো খাতা খুঁজতে হবে না।</p>
+          <ul class="feature-check-list">
+            <li><i class="bi bi-check-circle-fill"></i> মোট অর্ডার, বকেয়া ও জমার পরিষ্কার হিসাব</li>
+            <li><i class="bi bi-check-circle-fill"></i> পাঞ্জাবি, পায়জামা, জুতা — সব পোশাকের আলাদা মাপ</li>
+            <li><i class="bi bi-check-circle-fill"></i> সম্পূর্ণ অর্ডার ইতিহাস এক জায়গায়</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     SHOWCASE (Dark)
+════════════════════════════════════════ -->
+<section class="showcase-section" style="padding:6rem 0">
+  <div class="container position-relative" style="z-index:2">
+    <div class="text-center" data-aos="fade-up">
+      <div class="section-label" style="color:var(--gold-light)"><i class="bi bi-circle-fill" style="color:var(--gold)"></i> স্ক্রিনশট গ্যালারি</div>
+      <h2 class="section-heading">সফটওয়্যারটি দেখতে কেমন?</h2>
+      <p class="section-sub">রিয়েল স্ক্রিনশট — যা দেখছেন তাই পাবেন</p>
+    </div>
+
+    <div class="tab-nav-custom" data-aos="fade-up" data-aos-delay="100">
+      <button class="tab-btn-custom active" onclick="showTab(event,'tab-dashboard')">
+        <i class="bi bi-grid-1x2 me-1"></i> ড্যাশবোর্ড
+      </button>
+      <button class="tab-btn-custom" onclick="showTab(event,'tab-orders')">
+        <i class="bi bi-list-ul me-1"></i> অর্ডার তালিকা
+      </button>
+      <button class="tab-btn-custom" onclick="showTab(event,'tab-customer')">
+        <i class="bi bi-person me-1"></i> কাস্টমার
+      </button>
+      <button class="tab-btn-custom" onclick="showTab(event,'tab-bill')">
+        <i class="bi bi-receipt me-1"></i> বিল ও রিপোর্ট
+      </button>
+      <button class="tab-btn-custom" onclick="showTab(event,'tab-audit')">
+        <i class="bi bi-search me-1"></i> অডিট লগ
+      </button>
+    </div>
+
+    <div class="tab-panel-custom active" id="tab-dashboard">
+      <div class="screenshot-frame" data-aos="zoom-in" data-aos-duration="600">
+        <img src="img/Screenshot 2026-04-05 161048.png" alt="ড্যাশবোর্ড">
+      </div>
+    </div>
+    <div class="tab-panel-custom" id="tab-orders">
+      <div class="screenshot-frame" data-aos="zoom-in" data-aos-duration="600">
+        <img src="img/Screenshot 2026-04-05 161109.png" alt="অর্ডার তালিকা">
+      </div>
+    </div>
+    <div class="tab-panel-custom" id="tab-customer">
+      <div class="screenshot-frame" data-aos="zoom-in" data-aos-duration="600">
+        <img src="img/Screenshot 2026-04-05 161137.png" alt="কাস্টমার প্রোফাইল">
+      </div>
+    </div>
+    <div class="tab-panel-custom" id="tab-bill">
+      <div class="screenshot-duo" data-aos="zoom-in" data-aos-duration="600">
+        <div>
+          <span class="screenshot-label"><i class="bi bi-receipt me-1"></i> কাশ মেমো / বিল</span>
+          <img src="img/Screenshot 2026-04-05 161249.png" alt="কাশ মেমো">
+        </div>
+        <div>
+          <span class="screenshot-label"><i class="bi bi-bar-chart-line me-1"></i> রিপোর্ট ও বিশ্লেষণ</span>
+          <img src="img/Screenshot 2026-04-02 164548.png" alt="রিপোর্ট">
+        </div>
+      </div>
+    </div>
+    <div class="tab-panel-custom" id="tab-audit">
+      <div class="screenshot-frame" data-aos="zoom-in" data-aos-duration="600">
+        <img src="img/Screenshot 2026-04-05 130345.png" alt="অডিট লগ">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     WHY US
+════════════════════════════════════════ -->
+<section class="section-white">
+  <div class="container">
+    <div class="text-center" data-aos="fade-up">
+      <div class="section-label"><i class="bi bi-circle-fill"></i> কেন আমরা</div>
+      <h2 class="section-heading">কেন আমাদের বেছে নেবেন?</h2>
+      <p class="section-sub">বাংলাদেশের টেইলার্সদের জন্য সবচেয়ে বিশ্বস্ত সমাধান</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="0">
+        <div class="why-card">
+          <div class="why-icon-wrap"><i class="bi bi-translate"></i></div>
+          <h3 class="why-title">সম্পূর্ণ বাংলা ভাষায়</h3>
+          <p class="why-desc">কোনো ইংরেজি শব্দ নেই। যে কেউ সহজেই ব্যবহার করতে পারবে।</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="80">
+        <div class="why-card">
+          <div class="why-icon-wrap"><i class="bi bi-hand-index-thumb"></i></div>
+          <h3 class="why-title">সহজ ইন্টারফেস</h3>
+          <p class="why-desc">কোনো টেকনিক্যাল জ্ঞান লাগে না। ৫ মিনিটেই শিখতে পারবেন।</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="160">
+        <div class="why-card">
+          <div class="why-icon-wrap"><i class="bi bi-shield-lock"></i></div>
+          <h3 class="why-title">নিরাপদ ডেটা</h3>
+          <p class="why-desc">সব ডেটা এনক্রিপ্টেড এবং নিয়মিত ব্যাকআপ নেওয়া হয়।</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="240">
+        <div class="why-card">
+          <div class="why-icon-wrap"><i class="bi bi-headset"></i></div>
+          <h3 class="why-title">লাইভ সাপোর্ট</h3>
+          <p class="why-desc">২৪/৭ হোয়াটসঅ্যাপ সাপোর্ট। দ্রুত সমাধান পাবেন।</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="320">
+        <div class="why-card">
+          <div class="why-icon-wrap"><i class="bi bi-wallet2"></i></div>
+          <h3 class="why-title">কম খরচ</h3>
+          <p class="why-desc">মাসিক মাত্র ১০০০ টাকা। আপনার আয়ের তুলনায় অনেক কম।</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="400">
+        <div class="why-card">
+          <div class="why-icon-wrap"><i class="bi bi-file-earmark-x"></i></div>
+          <h3 class="why-title">কোনো চুক্তি নেই</h3>
+          <p class="why-desc">যেকোনো সময় বন্ধ করতে পারেন। কোনো লুকানো খরচ নেই।</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     PRICING
+════════════════════════════════════════ -->
+<section class="section-bg">
+  <div class="container">
+    <div class="text-center" data-aos="fade-up">
+      <div class="section-label"><i class="bi bi-circle-fill"></i> মূল্য নির্ধারণ</div>
+      <h2 class="section-heading">সহজ ও স্বচ্ছ মূল্য</h2>
+      <p class="section-sub">কোনো লুকানো খরচ নেই, কোনো জটিল প্যাকেজ নেই</p>
+    </div>
+    <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="100">
+      <div class="col-lg-7 col-xl-6">
+        <div class="pricing-card-main">
+          <div class="pricing-top">
+            <div class="pricing-name">স্টার্টার প্যাক</div>
+            <div class="pricing-tagline">সব ফিচার আনলিমিটেড</div>
+          </div>
+          <div class="pricing-body">
+            <div class="pricing-row-custom">
+              <span class="pricing-label"><i class="bi bi-box-seam me-2 text-muted"></i>সেটআপ ফি (প্রথম মাসে)</span>
+              <span class="price-orange">৫,০০০ টাকা</span>
+            </div>
+            <div class="pricing-row-custom">
+              <span class="pricing-label"><i class="bi bi-calendar-month me-2 text-muted"></i>মাসিক ফি</span>
+              <span class="price-green">১,০০০ টাকা</span>
+            </div>
+            <div class="offer-box-custom">
+              <p class="offer-title-custom"><i class="bi bi-gift me-1"></i> বিশেষ অফার: প্রথম ৫ জন গ্রাহকের জন্য সেটআপ ফি ৫০% ছাড়!</p>
+              <p class="offer-sub-custom">মাত্র ২,৫০০ টাকায় শুরু করুন</p>
+            </div>
+            <ul class="pricing-check-list">
+              <li><i class="bi bi-check-circle-fill"></i> সব ফিচার আনলক করা</li>
+              <li><i class="bi bi-check-circle-fill"></i> ২৪/৭ লাইভ সাপোর্ট</li>
+              <li><i class="bi bi-check-circle-fill"></i> নিয়মিত ডেটা ব্যাকআপ</li>
+              <li><i class="bi bi-check-circle-fill"></i> কোনো লুকানো খরচ নেই</li>
+            </ul>
+            <button class="btn btn-gold btn-lg-custom w-100" id="pricingBtn">
+              <i class="bi bi-lightning-charge-fill me-2"></i>এখনই শুরু করুন
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     CTA
+════════════════════════════════════════ -->
+<section class="cta-section" style="padding:6rem 0">
+  <div class="container text-center position-relative" style="z-index:2" data-aos="zoom-in" data-aos-duration="700">
+    <h2 class="cta-title">আজই শুরু করুন আপনার ব্যবসার<br>ডিজিটাল রূপান্তর!</h2>
+    <p class="cta-sub">৭ দিনের ফ্রি ডেমো পান। কোনো ক্রেডিট কার্ড লাগবে না।</p>
+    <div class="d-flex gap-3 justify-content-center flex-wrap cta-btns-row">
+      <button class="btn btn-white-custom btn-lg-custom" id="ctaDemoBtn">
+        <i class="bi bi-rocket-takeoff me-2"></i>এখনই ডেমো নিন
+      </button>
+      <button class="btn btn-outline-white-custom btn-lg-custom" onclick="openWhatsApp()">
+        <i class="bi bi-whatsapp me-2"></i>হোয়াটসঅ্যাপে যোগাযোগ করুন
+      </button>
+    </div>
+    <div class="cta-trust">
+      <div class="cta-trust-item"><i class="bi bi-shield-check"></i> নিরাপদ পেমেন্ট</div>
+      <div class="cta-trust-item"><i class="bi bi-clock-history"></i> ৭ দিন ফ্রি ট্রায়াল</div>
+      <div class="cta-trust-item"><i class="bi bi-x-circle"></i> যেকোনো সময় বাতিল</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     FOOTER
+════════════════════════════════════════ -->
+<footer class="footer-section">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-4">
+        <a href="#" class="footer-brand">
+          <div class="brand-icon" style="width:38px;height:38px;border-radius:10px;font-size:1rem"><i class="bi bi-scissors"></i></div>
+          <span style="font-weight:700;font-size:1.15rem;color:white">স্মার্ট টেইলার্স</span>
+        </a>
+        <p class="footer-desc">বাংলাদেশের টেইলার্সদের জন্য সবচেয়ে আধুনিক ও সহজ ডিজিটাল ম্যানেজমেন্ট সিস্টেম।</p>
+        <div class="footer-social">
+          <a href="#"><i class="bi bi-facebook"></i></a>
+          <a href="#"><i class="bi bi-instagram"></i></a>
+          <a href="#"><i class="bi bi-youtube"></i></a>
+          <a href="#"><i class="bi bi-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="col-6 col-lg-4">
+        <h4 class="footer-heading">দ্রুত লিংক</h4>
+        <ul class="footer-links">
+          <li><a href="#"><i class="bi bi-chevron-right"></i> ফিচারসমূহ</a></li>
+          <li><a href="#"><i class="bi bi-chevron-right"></i> মূল্য নির্ধারণ</a></li>
+          <li><a href="#"><i class="bi bi-chevron-right"></i> ডেমো দেখুন</a></li>
+          <li><a href="#"><i class="bi bi-chevron-right"></i> গোপনীয়তা নীতি</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-lg-4">
+        <h4 class="footer-heading">যোগাযোগ</h4>
+        <ul class="footer-links">
+          <li><a href="tel:+8801872695436"><i class="bi bi-telephone"></i> ০১৮৭২৬৯৫৪৩৬</a></li>
+          <li><a href="mailto:info@smarttailors.bd"><i class="bi bi-envelope"></i> info@smarttailors.bd</a></li>
+          <li><a href="#" onclick="openWhatsApp();return false;"><i class="bi bi-whatsapp"></i> WhatsApp সাপোর্ট</a></li>
+          <li><a href="#"><i class="bi bi-geo-alt"></i> বাংলাদেশ</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; ২০২৬ স্মার্ট টেইলার্স। সর্বাধিকার সংরক্ষিত। <span style="margin:0 0.5rem">|</span> ডিজাইন ও ডেভেলপ: <span style="color:var(--gold)">স্মার্ট টেইলার্স টিম</span></p>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════ SCRIPTS ═══════ -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+  // ─── PAGE LOADER ───
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      document.getElementById('pageLoader').classList.add('hidden');
+    }, 500);
+  });
+
+  // ─── AOS INIT ───
+  AOS.init({
+    once: true,
+    duration: 700,
+    easing: 'ease-out-cubic',
+    offset: 60
+  });
+
+  // ─── NAVBAR SCROLL ───
+  const nav = document.getElementById('mainNav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 50);
+  });
+
+  // ─── BACK TO TOP ───
+  const btt = document.getElementById('backToTop');
+  window.addEventListener('scroll', () => {
+    btt.classList.toggle('visible', window.scrollY > 400);
+  });
+
+  // ─── WHATSAPP ───
+  function openWhatsApp() {
+    const phone = "8801872695436";
+    const msg = encodeURIComponent("আমি স্মার্ট টেইলার্স ম্যানেজমেন্ট সিস্টেমের ডেমো নিতে চাই।");
+    window.open(`https://wa.me/${phone}?text=${msg}`, "_blank");
+  }
+
+  // ─── TABS ───
+  function showTab(e, id) {
+    document.querySelectorAll('.tab-panel-custom').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn-custom').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    e.currentTarget.classList.add('active');
+    // Re-init AOS for the newly shown panel
+    AOS.refresh();
+  }
+
+  // ─── COUNTER ANIMATION ───
+  function animateCounters() {
+    const counters = document.querySelectorAll('.count-up');
+    counters.forEach(counter => {
+      if (counter.dataset.animated) return;
+      const rect = counter.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        counter.dataset.animated = 'true';
+        const target = parseInt(counter.dataset.target);
+        const duration = 2000;
+        const startTime = performance.now();
+        function update(currentTime) {
+          const elapsed = currentTime - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          // Ease out cubic
+          const eased = 1 - Math.pow(1 - progress, 3);
+          const current = Math.floor(eased * target);
+          counter.textContent = current.toLocaleString('bn-BD');
+          if (progress < 1) requestAnimationFrame(update);
+          else counter.textContent = target.toLocaleString('bn-BD');
+        }
+        requestAnimationFrame(update);
+      }
+    });
+  }
+  window.addEventListener('scroll', animateCounters);
+  window.addEventListener('load', () => setTimeout(animateCounters, 600));
+
+  // ─── DEMO BUTTONS → WHATSAPP ───
+  document.getElementById('demoBtn').addEventListener('click', openWhatsApp);
+  document.getElementById('heroDemoBtn').addEventListener('click', openWhatsApp);
+  document.getElementById('pricingBtn').addEventListener('click', openWhatsApp);
+  document.getElementById('ctaDemoBtn').addEventListener('click', openWhatsApp);
+</script>
+</body>
+</html>
