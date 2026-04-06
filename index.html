@@ -105,8 +105,6 @@
       position: relative; min-height: 100vh; display: flex; align-items: center; overflow: hidden;
       background: var(--bg); padding-top: 5rem;
     }
-    
-    /* FIX: Blob overflow issue */
     .hero-bg-blob { position: absolute; border-radius: 50%; pointer-events: none; filter: blur(80px); z-index: 0; max-width: 100vw; overflow: hidden;}
     .hero-bg-blob.b1 { width: 600px; height: 600px; top: -10%; right: -20%; background: rgba(201,169,110,.12); }
     .hero-bg-blob.b2 { width: 400px; height: 400px; bottom: -10%; left: -20%; background: rgba(43,94,78,.08); }
@@ -137,13 +135,12 @@
     }
     .hero-img-main img { width: 100%; display: block; object-fit: cover; }
     
-    /* FIX: Float Badge Overflow on mobile */
     .hero-float-badge {
       position: absolute; z-index: 3; background: rgba(255,255,255,.92); backdrop-filter: blur(16px);
       border-radius: 14px; padding: .8rem 1rem; box-shadow: 0 12px 40px rgba(0,0,0,.1);
       display: flex; align-items: center; gap: .7rem; border: 1px solid rgba(255,255,255,.5);
       animation: floatBadge 4s ease-in-out infinite; white-space: nowrap;
-      max-width: calc(100vw - 40px); /* Prevent overflowing screen */
+      max-width: calc(100vw - 40px);
     }
     .hero-float-badge.badge-bottom { bottom: -1rem; right: -0.5rem; }
     .hero-float-badge.badge-top { top: 1.5rem; left: -1rem; animation-delay: 1.5s; }
@@ -155,7 +152,7 @@
     .badge-icon-circle.gold-bg { background: linear-gradient(135deg,var(--gold),var(--gold-dark)); }
     .badge-icon-circle.green-bg { background: linear-gradient(135deg,var(--green),var(--green-light)); }
     .badge-text strong { display: block; font-size: .85rem; color: var(--text); }
-    .badge-text span { font-size: .7rem; color: var(--text-muted); white-space: normal;} /* Allow wrap if needed */
+    .badge-text span { font-size: .7rem; color: var(--text-muted); white-space: normal;}
     
     @keyframes floatBadge { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
 
@@ -167,7 +164,7 @@
     @keyframes marqueeScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
     /* ── SECTIONS ── */
-    section { padding: 5rem 0; overflow: hidden; } /* Fix section overflow */
+    section { padding: 5rem 0; overflow: hidden; }
     .section-label { display: inline-flex; align-items: center; gap: .5rem; color: var(--gold-dark); font-weight: 600; font-size: .85rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1rem; }
     .section-heading { font-size: clamp(1.6rem, 4vw, 2.5rem); font-weight: 700; line-height: 1.3; margin-bottom: 1rem; }
     .section-sub { font-size: clamp(0.95rem, 2vw, 1.05rem); color: var(--text-muted); max-width: 600px; margin: 0 auto 3rem; line-height: 1.7; }
@@ -225,7 +222,7 @@
     }
 
     /* ── FEATURES ── */
-    .feature-block { padding: 3rem 0; }
+    .feature-block { padding: 4rem 0; }
     .feature-block + .feature-block { border-top: 1px solid rgba(0,0,0,.05); }
     .feature-tag {
       display: inline-flex; align-items: center; gap: .4rem;
@@ -233,7 +230,7 @@
       color: var(--gold-dark); padding: .3rem 1rem; border-radius: 50px;
       font-size: .8rem; font-weight: 600; margin-bottom: 1rem;
     }
-    .feature-heading { font-size: clamp(1.4rem, 3vw, 1.8rem); font-weight: 700; margin-bottom: 1rem; line-height: 1.3; }
+    .feature-heading { font-size: clamp(1.5rem, 3vw, 1.8rem); font-weight: 700; margin-bottom: 1rem; line-height: 1.3; }
     .feature-heading .highlight { color: var(--gold-dark); }
     .feature-desc { font-size: .95rem; color: var(--text-muted); margin-bottom: 1.5rem; line-height: 1.7; }
     .feature-check-list { list-style: none; padding: 0; margin: 0; }
@@ -247,7 +244,7 @@
     .feature-img-wrapper img { width: 100%; display: block; }
     .mockup-bg { background: #f1f5f9; padding: 1.5rem; border-radius: var(--radius-lg); border: 1px solid #e2e8f0; }
 
-    /* ── SHOWCASE CAROUSEL ── */
+    /* ── SHOWCASE CAROUSEL (FIXED HEIGHT FOR RESPONSIVENESS) ── */
     .showcase-section { background: var(--dark); position: relative; overflow: hidden; width: 100vw;}
     .showcase-section::before {
       content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
@@ -256,18 +253,49 @@
     .showcase-section .section-heading { color: #fff; }
     .showcase-section .section-sub { color: rgba(255,255,255,.4); }
 
-    /* FIX: Carousel max-width issue */
+    /* Carousel Main Box */
     .carousel-custom { position: relative; max-width: 900px; margin: 0 auto; width: 100%; padding: 0 15px;}
-    .carousel-inner-custom { overflow: hidden; border-radius: var(--radius-lg); }
-    .carousel-slide { display: none; animation: slideIn .5s ease; }
-    .carousel-slide.active { display: block; }
-    @keyframes slideIn { from { opacity: 0; transform: scale(0.98); } to { opacity: 1; transform: scale(1); } }
     
-    .carousel-slide img {
-      width: 100%; border-radius: var(--radius-lg); display: block;
-      box-shadow: 0 20px 60px rgba(0,0,0,.4); border: 1px solid rgba(255,255,255,.08);
+    /* Fixed Aspect Ratio Container to prevent jumping */
+    .carousel-inner-custom { 
+        position: relative;
+        width: 100%;
+        padding-top: 55%; /* 16:9 Aspect Ratio Approx */
+        border-radius: var(--radius-lg);
+        overflow: hidden;
     }
-    .carousel-slide-duo { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    
+    /* Inner Slides strictly bound to container */
+    .carousel-slide { 
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        opacity: 0; visibility: hidden; transition: opacity .5s ease, transform .5s ease;
+        transform: scale(0.98);
+        display: flex; align-items: center; justify-content: center;
+    }
+    .carousel-slide.active { 
+        opacity: 1; visibility: visible; transform: scale(1);
+    }
+    
+    /* Standard Images inside slides */
+    .carousel-slide > img {
+        width: 100%; height: 100%; object-fit: cover; object-position: top;
+        border-radius: var(--radius-lg); display: block;
+        box-shadow: 0 20px 60px rgba(0,0,0,.4); border: 1px solid rgba(255,255,255,.08);
+    }
+    
+    /* Duo Slide Fix for Mobile */
+    .carousel-slide-duo { 
+        width: 100%; height: 100%; display: flex; gap: 1rem; 
+    }
+    .carousel-slide-duo > div { 
+        flex: 1; height: 100%; display: flex; flex-direction: column; 
+    }
+    .carousel-slide-duo img {
+        width: 100%; height: 100%; object-fit: cover; object-position: top;
+        border-radius: var(--radius-lg); display: block; 
+        box-shadow: 0 20px 60px rgba(0,0,0,.4); border: 1px solid rgba(255,255,255,.08);
+    }
     
     .carousel-nav { display: flex; align-items: center; justify-content: center; gap: 1rem; margin-top: 2rem; }
     .carousel-arrow {
@@ -347,7 +375,7 @@
     .pricing-row-custom:last-of-type { border-bottom: none; }
     .pricing-label { font-size: .95rem; color: var(--text-secondary); font-weight: 500;}
     
-    .price-strike { font-size: 1.1rem; color: var(--text-muted); text-decoration: line-through; margin-right: 8px; font-weight: 700;}
+    .price-strike { font-size: 1.1rem; color: var(--text-muted); text-decoration: line-through; margin-right: 8px; font-weight: 500;}
     .price-orange { font-size: 1.5rem; font-weight: 700; color: var(--orange); }
     .price-green { font-size: 1.5rem; font-weight: 700; color: var(--green); }
     
@@ -444,6 +472,7 @@
       .step-connector { display: none; }
       .carousel-slide-duo { grid-template-columns: 1fr; }
     }
+    
     @media (max-width: 767px) {
       /* Force body to not overflow */
       body, html { overflow-x: hidden !important; width: 100%; }
@@ -466,6 +495,9 @@
       .feature-check-list li { justify-content: center; text-align: left; }
       .feature-img-wrapper { margin-top: 1.5rem; }
       .mockup-bg { padding: 1rem; }
+      
+      /* Fix Carousel mobile jump issue */
+      .carousel-inner-custom { padding-top: 80%; /* Adjusted for mobile portrait */ }
       
       .wa-container { left: 1rem; bottom: 1rem; }
       .wa-tooltip { display: none; } /* Hide tooltip on small mobile */
@@ -528,11 +560,11 @@
           <button class="btn btn-gold btn-lg" onclick="openWhatsApp()"><i class="bi bi-rocket-takeoff me-2"></i>৭ দিনের ফ্রি ডেমো</button>
           <button class="btn btn-outline-gold btn-lg" onclick="openWhatsApp()"><i class="bi bi-chat-dots me-2"></i>বিস্তারিত জানুন</button>
         </div>
-        <!--<div class="hero-stats">
+        <div class="hero-stats">
           <div><span class="hero-stat-number"><span class="count-up" data-target="500">0</span>+</span><span class="hero-stat-label">সন্তুষ্ট গ্রাহক</span></div>
           <div><span class="hero-stat-number"><span class="count-up" data-target="50">0</span>+</span><span class="hero-stat-label">শহরে সক্রিয়</span></div>
           <div><span class="hero-stat-number"><span class="count-up" data-target="10000">0</span>+</span><span class="hero-stat-label">অর্ডার পরিচালিত</span></div>
-        </div>-->
+        </div>
       </div>
       <div class="col-lg-6 order-1 order-lg-2" data-aos="fade-left" data-aos-duration="800" data-aos-delay="200">
         <div class="hero-img-container">
@@ -700,7 +732,7 @@
   </div>
 </section>
 
-<!-- ═══════ SHOWCASE CAROUSEL ═══════ -->
+<!-- ═══════ SHOWCASE CAROUSEL (FIXED MOBILE SCROLL) ═══════ -->
 <section class="showcase-section">
   <div class="container position-relative" style="z-index:2">
     <div class="text-center" data-aos="fade-up">
@@ -709,19 +741,25 @@
     </div>
 
     <div class="carousel-custom" data-aos="fade-up" data-aos-delay="100">
+      <!-- Added absolute positioning container to prevent height jumping -->
       <div class="carousel-inner-custom" id="carouselInner">
         <div class="carousel-slide active" data-index="0"><img src="img/Screenshot 2026-04-05 161048.png" alt="ড্যাশবোর্ড"></div>
         <div class="carousel-slide" data-index="1"><img src="img/Screenshot 2026-04-05 161109.png" alt="অর্ডার তালিকা"></div>
         <div class="carousel-slide" data-index="2"><img src="img/Screenshot 2026-04-05 161137.png" alt="কাস্টমার প্রোফাইল"></div>
         <div class="carousel-slide" data-index="3">
           <div class="carousel-slide-duo">
-            <div><span class="carousel-label"><i class="bi bi-receipt me-1"></i> ক্যাশ মেমো</span><img src="img/Screenshot 2026-04-05 161249.png" alt="ক্যাশ মেমো"></div>
-            <div><span class="carousel-label"><i class="bi bi-bar-chart-line me-1"></i> রিপোর্ট</span><img src="img/Screenshot 2026-04-02 164548.png" alt="রিপোর্ট"></div>
+            <div style="position: relative;"><img src="img/Screenshot 2026-04-05 161249.png" alt="ক্যাশ মেমো"></div>
+            <div style="position: relative;"><img src="img/Screenshot 2026-04-02 164548.png" alt="রিপোর্ট"></div>
           </div>
         </div>
       </div>
-      <div class="carousel-counter" id="carouselCounter">১ / ৪</div>
-      <div class="carousel-nav">
+      
+      <!-- Moved Counter OUTSIDE to prevent layout shifts -->
+      <div class="d-flex justify-content-center mt-3">
+          <div class="badge bg-dark border border-secondary text-white px-3 py-2" id="carouselCounter">১ / ৪</div>
+      </div>
+      
+      <div class="carousel-nav mt-3">
         <button class="carousel-arrow" id="carouselPrev" aria-label="Previous"><i class="bi bi-arrow-left"></i></button>
         <div class="carousel-dots" id="carouselDots"></div>
         <button class="carousel-arrow" id="carouselNext" aria-label="Next"><i class="bi bi-arrow-right"></i></button>
@@ -853,8 +891,8 @@
             <div class="pricing-row-custom">
               <span class="pricing-label"><i class="bi bi-gear-fill me-2 text-muted"></i>ওয়ান-টাইম সেটআপ ফি</span>
               <div>
-                  <span class="price-strike">১০,০০০</span>
-                  <span class="price-orange">৫,০০০ টাকা</span>
+                  <span class="price-strike">৫,০০০</span>
+                  <span class="price-orange">২,৫০০ টাকা</span>
               </div>
             </div>
             <div class="pricing-row-custom">
@@ -937,7 +975,7 @@ function openWhatsApp(){
   window.open(`https://wa.me/${phone}?text=${msg}`,"_blank");
 }
 
-/* CAROUSEL LOGIC */
+/* ── CAROUSEL FIXED LOGIC ── */
 const slides = document.querySelectorAll('.carousel-slide');
 const totalSlides = slides.length;
 let currentSlide = 0;
